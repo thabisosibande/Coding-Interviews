@@ -1,0 +1,84 @@
+import java.util.*;
+
+public class SpiralMatrix{
+   
+   public static void main(String args[]) {
+      
+     //sample input  
+     int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};  
+     
+     ArrayList<Integer> result = new ArrayList<Integer>();
+
+      
+      result = spiral(matrix);
+      
+      System.out.println("Output: " + result);
+      
+   }
+
+   public static ArrayList<Integer> spiral(int[][] matrix) {
+      
+      // return list
+      ArrayList<Integer> answer = new ArrayList<Integer>();
+      
+      //base case
+      if (matrix.length == 0)
+         return answer; // returns empty list
+
+      int row = matrix.length;
+      int  col = matrix[0].length;
+      int shift = 0;    //refers to the shifts in order to not have duplicates when at turns
+      boolean flag = true;
+              
+      int c = 0; // column position
+      int r = 0; // row position
+      int numItems = row * col; // number of elements in matrix
+              
+      answer.add(matrix[0][0]) ;  //adds the first element of the spiral
+      while (flag = true) {
+        
+         // first case : from left to right     -->  -->  -->
+         for (c = c + 1; c < col - shift; c++) {
+            answer.add(matrix[r + shift][c]) ;
+         }
+            
+         // checks if entire matrix is read after each case condtion
+         if (answer.size() == numItems)   
+            break;
+            
+         c--;   //                                |    |
+         // second case :  from top to bottom    \|/  \|/
+         for (r = r + 1; r < row - shift; r++) {
+            answer.add(matrix[r - shift][c - shift]);
+         }
+            
+         if (answer.size() == numItems)   
+            break;
+            
+         r--;
+         // third case : from right to left     <--  <--  <--
+         for (c = c - 1; c > -1 + shift; c--) {
+            answer.add(matrix[r - shift][c + shift]);
+         }
+         
+         if (answer.size() == numItems)   
+            break;
+                                             
+         c++;  //                                 /|\   /|\
+         // fourth case  : from bottom to top      |     |
+         for (r = r - 1; r > 0 + shift; r--) {
+            answer.add(matrix[r + shift][c + shift]);
+         }
+            
+         if (answer.size() == numItems)   
+            break;
+          
+         shift++;
+            
+      }
+ 
+      
+      return answer;
+      
+   }
+}
