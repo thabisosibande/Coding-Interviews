@@ -1,0 +1,32 @@
+public class 2dmatrix {
+   
+   public static void main(String args[]) {
+      
+     // sample input  
+     int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+     
+     boolean result;
+
+     int itemSearch = 23;
+      
+      System.out.println("target = " + itemSearch);
+      
+      result = matrixSearch(itemSearch, matrix);
+      
+      System.out.println("Output: " + result);
+      
+   }
+
+   public boolean matrixSearch(int item, int[][] matrix) {
+    
+      // iterate over the matrix
+      for (int i = 0; i < matrix.length ; i++) {
+         for (int j = 0; j < matrix[i].length ; j++) {
+            if (matrix[i][j] == item) { 
+               return true;
+            }      
+         }
+      }
+      return false;
+   }
+}
